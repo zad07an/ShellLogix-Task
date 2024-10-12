@@ -1,0 +1,11 @@
+.link {
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.active {
+  color: rgb(0, 176, 176);
+}
