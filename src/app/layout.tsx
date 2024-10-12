@@ -1,9 +1,9 @@
+import { Footer } from "@/components/organisms/Footer";
+import { Header } from "@/components/organisms/Header/Header";
+import { ProviderChakra } from "@/components/templates/ProviderChakra";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import { ProviderChakra } from "@/components/templates/ProviderChakra";
-import { Header } from "@/components/organisms/Header";
-import { Footer } from "@/components/organisms/Footer";
+import "./globals.scss";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,9 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ProviderChakra>
-          <Header />
-          {children}
-          <Footer />
+          <main className="main_layout">
+            <Header />
+            {children}
+            <Footer />
+          </main>
         </ProviderChakra>
       </body>
     </html>
