@@ -1,21 +1,13 @@
 import { Footer } from "@/components/organisms/Footer";
 import { Header } from "@/components/organisms/Header";
-import { ProviderChakra } from "@/components/templates/ProviderChakra";
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.scss";
-import { ProviderReactQuery } from "@/components/templates/ProviderReactQuery";
 import { Providers } from "@/components/templates/Providers";
+import type { Metadata } from "next";
+import { Noto_Sans } from "next/font/google";
+import "./globals.scss";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const notoSans = Noto_Sans({
+  subsets: ["latin"],
+  variable: "--font-noto-sans",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${notoSans.variable} ${notoSans.className} antialiased`}
       >
         <Providers>
           <main className="main_layout">
