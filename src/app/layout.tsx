@@ -4,6 +4,8 @@ import { ProviderChakra } from "@/components/templates/ProviderChakra";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
+import { ProviderReactQuery } from "@/components/templates/ProviderReactQuery";
+import { Providers } from "@/components/templates/Providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,13 +33,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ProviderChakra>
+        <Providers>
           <main className="main_layout">
             <Header />
             {children}
             <Footer />
           </main>
-        </ProviderChakra>
+        </Providers>
       </body>
     </html>
   );
