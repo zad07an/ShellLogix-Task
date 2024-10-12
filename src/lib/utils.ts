@@ -29,11 +29,13 @@ export function convertNameToSlug(input: string, url: string) {
 }
 
 export async function getImage(
-  src: string | undefined
+  src: string | undefined,
+  ext?: string
 ): Promise<StaticImageData | null> {
   try {
     if (!src) return null;
-    const image = await import(`@/assets/images/${src}`);
+    const personName = getNameSlug(src);
+    const image = await import(`@/assets/images/${personName}.${ext || "png"}`);
     return image.default as StaticImageData;
   } catch (error) {
     console.error("Image not found:", error);

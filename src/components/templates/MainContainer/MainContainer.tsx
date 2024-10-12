@@ -17,8 +17,18 @@ export const MainContainer = () => {
       </div>
     );
   }
-  if (isError) return <p>Failed to fetch species</p>;
-  if ((isSuccess && !data) || !data) return <p>No data found</p>;
+  if (isError)
+    return (
+      <div className={styles.main_container}>
+        <p className={styles.error}>Failed to fetch data</p>
+      </div>
+    );
+  if ((isSuccess && !data) || !data)
+    return (
+      <div className={styles.main_container}>
+        <p className={styles.no_data_found}>No data found</p>
+      </div>
+    );
 
   return (
     <section className={styles.main_container}>
