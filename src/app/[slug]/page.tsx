@@ -1,7 +1,6 @@
 import { SingleSpeciePage } from "@/components/templates/SpeciePage";
 import { getCachedSpecie } from "@/lib/getCachedSpecie";
-import { getIdFromSlug, getImage } from "@/lib/utils";
-import { SpecieDataProps } from "@/types/definitions";
+import { getIdFromSlug } from "@/lib/utils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -31,18 +30,8 @@ export async function generateMetadata({
 
 const SpeciePage = async ({ params: { slug } }: SpeciePageProps) => {
   const id = getIdFromSlug(slug);
-  const data = await getCachedSpecie(id);
 
-  if (!data) notFound();
-
-  const image = getImage(data.name);
-
-  const combinedData = {
-    ...data,
-    image: image || "",
-  } satisfies SpecieDataProps;
-
-  return <SingleSpeciePage specie={combinedData} />;
+  return <SingleSpeciePage id={id} />;
 };
 
 export default SpeciePage;

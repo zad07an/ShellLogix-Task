@@ -1,17 +1,43 @@
+"use client";
+
 import {
   SpecieCard,
   SpecieCardImage,
   SpecieCardInfoWrapper,
 } from "@/components/organisms/SpecieCard";
-import { SpecieDataProps } from "@/types/definitions";
+import { useFetchSingleSpecieQuery } from "@/hooks/queries/useFetchSingleSpecieQuery";
+import { Spinner, Text } from "@chakra-ui/react";
+import { notFound } from "next/navigation";
 import { RelatedSpecies } from "../RelatedSpecies";
 import styles from "./specie-page.module.scss";
 
 interface SingleSpeciePageProps {
-  specie: SpecieDataProps;
+  id: string;
 }
 
-export const SingleSpeciePage = ({ specie }: SingleSpeciePageProps) => {
+export const SingleSpeciePage = ({ id }: SingleSpeciePageProps) => {
+  const { data: specie, status } = useFetchSingleSpecieQuery(id);
+
+  if (status === "pending") {
+    return (
+      <div className="full-height centered">
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <div className="full-height centered">
+        <Text fontSize={18} color="red" fontWeight="bold">
+          Failed to fetch specie
+        </Text>
+      </div>
+    );
+  }
+
+  if (!specie) notFound();
+
   return (
     <section className={styles.specie_container}>
       <SpecieCard>
