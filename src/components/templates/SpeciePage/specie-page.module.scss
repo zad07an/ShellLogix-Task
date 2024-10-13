@@ -6,24 +6,10 @@
   align-items: center;
   margin: 0 auto;
   flex-direction: column;
-  padding: 24px;
+  gap: 32px;
+  padding: 24px 0;
 
-  .specie_card {
-    width: 100%;
-    height: fit-content;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    background: var(--light-purple);
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-    .specie_info_wrapper {
-      width: fit-content;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+  @media (min-width: 768px) {
+    padding: 24px;
   }
 }

@@ -1,21 +1,44 @@
 .form {
-  width: 50%;
+  width: 100%;
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   position: relative;
+  gap: 8px;
   margin-top: 16px;
 
   input {
-    border-radius: 25px;
+    @media (min-width: 768px) {
+      border-radius: 25px;
+    }
   }
 
   button {
-    border-radius: 25px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10;
+    width: 100%;
+    padding: 0 16px;
+
+    @media (min-width: 768px) {
+      border-radius: 25px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+    }
+
+    @media (min-width: 640px) {
+      width: fit-content;
+      flex-grow: 1;
+    }
+  }
+
+  @media (min-width: 768px) {
+    gap: 0;
+  }
+
+  @media (min-width: 640px) {
+    max-width: 460px;
+    flex-direction: row;
   }
 }

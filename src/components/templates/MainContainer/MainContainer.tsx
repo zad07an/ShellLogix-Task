@@ -4,7 +4,7 @@ import { Pagination } from "@/components/molecules/Pagination";
 import { ListItems } from "@/components/organisms/ListItems";
 import { SpecieItem } from "@/components/organisms/SpecieItem";
 import { useFetchSpeciesQuery } from "@/hooks/queries/useFetchSpeciesQuery";
-import { Spinner } from "@chakra-ui/react";
+import { Grid, GridItem, Spinner } from "@chakra-ui/react";
 import styles from "./main-container.module.scss";
 
 export const MainContainer = () => {
@@ -32,12 +32,20 @@ export const MainContainer = () => {
 
   return (
     <section className={styles.main_container}>
-      <div className={styles.starships_list}>
+      <Grid
+        width="100%"
+        templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+        gap={8}
+      >
         <ListItems
           items={data}
-          render={(item) => <SpecieItem key={item.name} item={item} />}
+          render={(item) => (
+            <GridItem key={item.name}>
+              <SpecieItem item={item} />
+            </GridItem>
+          )}
         />
-      </div>
+      </Grid>
       <Pagination />
     </section>
   );
