@@ -1,7 +1,6 @@
-import { Button, Spinner } from "@chakra-ui/react";
+import { LoaderCircle } from "lucide-react";
 import { ReactNode } from "react";
 import styles from "./submit-button.module.scss";
-import { LoaderCircle } from "lucide-react";
 
 interface SubmitButtonProps {
   isPending: boolean;
