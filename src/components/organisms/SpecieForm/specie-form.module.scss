@@ -1,0 +1,21 @@
+.form {
+  width: 50%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 16px;
+
+  input {
+    border-radius: 25px;
+  }
+
+  button {
+    border-radius: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
