@@ -1,14 +1,11 @@
-import { SpecieDataProps } from "@/types/definitions";
-import styles from "./specie-page.module.scss";
-import Image from "next/image";
-import { Heading, Text } from "@chakra-ui/react";
-import { SpecieForm } from "@/components/organisms/SpecieForm";
 import {
   SpecieCard,
   SpecieCardImage,
   SpecieCardInfoWrapper,
 } from "@/components/organisms/SpecieCard";
+import { SpecieDataProps } from "@/types/definitions";
 import { RelatedSpecies } from "../RelatedSpecies";
+import styles from "./specie-page.module.scss";
 
 interface SingleSpeciePageProps {
   specie: SpecieDataProps;
