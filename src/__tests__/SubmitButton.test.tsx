@@ -12,7 +12,7 @@ describe("SubmitButton component", () => {
     const button = getByText("Click me");
     expect(button).toBeInTheDocument();
     expect(button).not.toHaveClass("error");
-    expect(button).not.toBeDisabled();
+    expect(button).toBeEnabled();
   });
 
   it("render a loading button when there is a pending", () => {
@@ -38,6 +38,6 @@ describe("SubmitButton component", () => {
     const button = getByText("Click me");
     expect(button).toBeInTheDocument();
     expect(button).toHaveClass("error");
-    expect(button).not.toBeDisabled();
+    expect(button).toBeEnabled();
   });
 });
