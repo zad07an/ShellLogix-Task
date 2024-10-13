@@ -1,8 +1,9 @@
 "use client";
 
-import { Heading, Text } from "@chakra-ui/react";
+import { Heading, Stack, Text } from "@chakra-ui/react";
+import dayjs from "dayjs";
 import Image from "next/image";
-import React, { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import { SpecieForm } from "../SpecieForm";
 import styles from "./specie-card.module.scss";
 
@@ -48,20 +49,33 @@ export const SpecieCardImage = ({ image }: SpecieCardImageProps) => {
 interface SpecieCardInfoWrapper {
   name: string;
   classification: string;
+  createdAt: string;
 }
 
 export const SpecieCardInfoWrapper = ({
   name,
   classification,
+  createdAt,
 }: SpecieCardInfoWrapper) => {
   useSpecieContext("SpecieCardInfoWrapper");
+  const date = dayjs(createdAt).format("DD.MM.YYYY");
 
   return (
     <div className={styles.specie_info_wrapper}>
       <Heading fontWeight="bold">{name}</Heading>
-      <Text fontSize={18} fontWeight="bold">
-        Classification: {classification}
-      </Text>
+      <Stack spacing={2}>
+        <Text
+          fontSize={18}
+          fontWeight="medium"
+          color="teal"
+          textTransform="capitalize"
+        >
+          Classification: {classification}
+        </Text>
+        <Text color="teal" fontSize={18} fontWeight="medium">
+          Created: {date}
+        </Text>
+      </Stack>
       <Text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio aspernatur
         reprehenderit, odit voluptatum voluptatem suscipit itaque voluptates

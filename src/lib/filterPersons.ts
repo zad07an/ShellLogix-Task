@@ -1,4 +1,5 @@
 import { SpecieDataProps } from "@/types/definitions";
+import { filter } from "lodash";
 
 interface FilterPersonsProps {
   data: SpecieDataProps[];
@@ -13,7 +14,7 @@ export function filterPersons({
   skinColor,
   name,
 }: FilterPersonsProps) {
-  return data.filter((item) => {
+  return filter(data, (item) => {
     const matchesName = name
       ? item.name.toLowerCase().includes(name.toLowerCase())
       : true;

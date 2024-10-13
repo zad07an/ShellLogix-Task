@@ -1,13 +1,17 @@
-import { getNameSlug } from "@/lib/utils";
+import { combineData } from "@/lib/combineData";
 import { getSpecies } from "@/services/api/get-sepcies";
 import { usePaginationStore } from "@/store/usePaginationStore";
+import { useRelatedSpeciesStore } from "@/store/useRelatedSpeciesStore";
 import { useQuery } from "@tanstack/react-query";
+import dayJs from "dayjs";
+import { sortBy } from "lodash";
 import { useSearchParams } from "next/navigation";
 
 export const useFetchSpeciesQuery = () => {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
   const { setCount } = usePaginationStore();
+  const { setRelatedSpecies } = useRelatedSpeciesStore();
 
   const options = useQuery({
     queryKey: ["species", page],
@@ -18,17 +22,17 @@ export const useFetchSpeciesQuery = () => {
 
       setCount(Number(fetchedData.count));
 
-      const combinedData = fetchedData.results.map((specie) => {
-        const name = getNameSlug(specie.name);
+      const combinedData = combineData(fetchedData.results);
 
-        return {
-          ...specie,
-          image: name, // Add the image to the species data
-        };
-      });
+      const sortedData = sortBy(combinedData, (item) =>
+        dayJs(item.created).toDate()
+      );
 
-      return combinedData;
+      setRelatedSpecies(combinedData);
+
+      return sortedData;
     },
+    retry: 3,
   });
 
   return options;

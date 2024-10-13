@@ -19,6 +19,7 @@ export const SingleSpeciePage = ({ specie }: SingleSpeciePageProps) => {
         <SpecieCardInfoWrapper
           name={specie.name}
           classification={specie.classification}
+          createdAt={specie.created}
         />
       </SpecieCard>
       <RelatedSpecies

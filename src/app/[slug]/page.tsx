@@ -35,11 +35,11 @@ const SpeciePage = async ({ params: { slug } }: SpeciePageProps) => {
 
   if (!data) notFound();
 
-  const image = await getImage(data.name);
+  const image = getImage(data.name);
 
   const combinedData = {
     ...data,
-    image: !!image ? image.src : "",
+    image: image || "",
   } satisfies SpecieDataProps;
 
   return <SingleSpeciePage specie={combinedData} />;

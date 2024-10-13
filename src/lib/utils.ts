@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/image";
+import { IMAGES } from "@/constants/images";
 
 export function getCurrentYear() {
   return new Date().getFullYear();
@@ -28,17 +28,8 @@ export function convertNameToSlug(input: string, url: string) {
   return `${nameSlug}-${urlId}`;
 }
 
-export async function getImage(
-  src: string | undefined,
-  ext?: string
-): Promise<StaticImageData | null> {
-  try {
-    if (!src) return null;
-    const personName = getNameSlug(src);
-    const image = await import(`@/assets/images/${personName}.${ext || "png"}`);
-    return image.default as StaticImageData;
-  } catch (error) {
-    console.error("Image not found:", error);
-    return null;
-  }
+export function getImage(src: string | undefined) {
+  if (!src) return undefined;
+  const personName = getNameSlug(src);
+  return IMAGES.find((item) => item.name === personName)?.image;
 }

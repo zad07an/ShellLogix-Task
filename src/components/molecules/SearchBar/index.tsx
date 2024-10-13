@@ -1,8 +1,8 @@
 "use client";
 
 import { useDebounce } from "@/hooks/useDebounce";
+import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
 import { Card, Input } from "@chakra-ui/react";
-import { useIsomorphicLayoutEffect } from "framer-motion";
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -17,6 +17,7 @@ export const SearchBar = () => {
 
   useIsomorphicLayoutEffect(() => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
+
     if (debouncedValue) {
       newSearchParams.set("name", debouncedValue);
     } else {
@@ -27,6 +28,7 @@ export const SearchBar = () => {
 
     return () => {
       newSearchParams.delete("name");
+      router.replace(`?${newSearchParams.toString()}`);
     };
   }, [debouncedValue, router]);
 

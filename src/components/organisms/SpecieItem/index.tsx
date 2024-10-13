@@ -1,6 +1,5 @@
 "use client";
 
-import { useImage } from "@/hooks/useImage";
 import { convertNameToSlug } from "@/lib/utils";
 import { SpecieDataProps } from "@/types/definitions";
 import { Stack, Text } from "@chakra-ui/react";
@@ -14,20 +13,12 @@ interface SpecieItemProps {
 
 export const SpecieItem = ({ item }: SpecieItemProps) => {
   const slug = convertNameToSlug(item.name, item.url);
-  const image = useImage(item.image);
-
   if (!slug) return null;
 
   return (
     <Link href={slug} className={styles.starship_card}>
-      {!!image ? (
-        <Image
-          src={image.src}
-          alt="image"
-          width={256}
-          height={256}
-          blurDataURL={image.blurDataURL}
-        />
+      {!!item.image ? (
+        <Image src={item.image} alt="image" width={256} height={256} />
       ) : (
         <div style={{ width: 256, minWidth: 256, height: 256 }}></div>
       )}

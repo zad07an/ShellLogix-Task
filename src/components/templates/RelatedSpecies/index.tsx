@@ -2,16 +2,12 @@
 
 import { ListItems } from "@/components/organisms/ListItems";
 import { SpecieItem } from "@/components/organisms/SpecieItem";
-import { useFetchRelatedSpeciesQuery } from "@/hooks/queries/useFetchRelatedSpeciesQuery";
-import {
-  Card,
-  Grid,
-  GridItem,
-  Heading,
-  Spinner,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { combineData } from "@/lib/combineData";
+import { useRelatedSpeciesStore } from "@/store/useRelatedSpeciesStore";
+import { Card, Grid, GridItem, Heading, Stack, Text } from "@chakra-ui/react";
+import dayjs from "dayjs";
+import { sortBy } from "lodash";
+import { useMemo } from "react";
 
 interface RelatedSpeciesProps {
   currentPersonName: string;
@@ -22,23 +18,23 @@ export const RelatedSpecies = ({
   currentPersonName,
   classification,
 }: RelatedSpeciesProps) => {
-  const { data, status } = useFetchRelatedSpeciesQuery({
-    classification,
-    currentPersonName,
-    limit: 5,
-  });
+  const { relatedSpecies } = useRelatedSpeciesStore();
 
-  if (status === "pending") return <Spinner />;
-
-  if (status === "error") {
-    return (
-      <Text fontSize={24} fontWeight="bold" colorScheme="red">
-        Failed to fetch related species.
-      </Text>
+  const filteredRelatedSpecies = useMemo(() => {
+    const filteredData = relatedSpecies.filter(
+      (item) =>
+        item.name !== currentPersonName &&
+        item.classification === classification
     );
-  }
+    const combinedData = combineData(filteredData);
 
-  if ((status === "success" && !data) || !data) {
+    return sortBy(combinedData, (item) => dayjs(item.created).toDate()).slice(
+      0,
+      4
+    );
+  }, [currentPersonName, classification, relatedSpecies]);
+
+  if (!filteredRelatedSpecies || !filteredRelatedSpecies.length) {
     return (
       <Text fontSize={24} fontWeight="bold">
         No related species.
@@ -54,7 +50,7 @@ export const RelatedSpecies = ({
         </Heading>
         <Grid templateColumns="repeat(auto-fill, minmax(320px, 1fr))" gap={8}>
           <ListItems
-            items={data}
+            items={filteredRelatedSpecies}
             render={(item) => (
               <GridItem key={item.name}>
                 <SpecieItem item={item} />
