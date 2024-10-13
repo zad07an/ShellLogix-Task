@@ -47,6 +47,7 @@ body {
   width: 100%;
   height: 100%;
   flex: 1;
+  padding: 16px;
 }
 
 .centered {
@@ -58,6 +59,7 @@ body {
 .not-found-text {
   font-size: 56px;
   font-weight: 900;
+  text-align: center;
 }
 
 .vertical {
@@ -68,4 +70,5 @@ body {
 .not-found-description {
   font-size: 18px;
   color: var(--primary-muted);
+  text-align: center;
 }

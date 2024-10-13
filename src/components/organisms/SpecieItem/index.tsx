@@ -16,7 +16,7 @@ export const SpecieItem = ({ item }: SpecieItemProps) => {
   if (!slug) return null;
 
   return (
-    <Link href={slug} className={styles.starship_card}>
+    <Link href={`/s/${slug}`} className={styles.starship_card}>
       {!!item.image ? (
         <Image src={item.image} alt="image" width={256} height={256} />
       ) : (
