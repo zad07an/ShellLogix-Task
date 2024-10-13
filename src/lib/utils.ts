@@ -22,7 +22,6 @@ export function getNameSlug(name: string) {
 }
 
 export function convertNameToSlug(input: string, url: string) {
-  console.log(url);
   const urlId = getIdFromUrl(url);
   const nameSlug = getNameSlug(input);
 

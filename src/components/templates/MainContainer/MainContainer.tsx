@@ -1,10 +1,9 @@
 "use client";
 
-import { Pagination } from "@/components/molecules/Pagination";
-import { ListItems } from "@/components/organisms/ListItems";
-import { SpecieItem } from "@/components/organisms/SpecieItem";
+import { FilterableSpecies } from "@/components/organisms/FilterableSpecies";
+import { SpeciesFilter } from "@/components/organisms/SpeciesFilter";
 import { useFetchSpeciesQuery } from "@/hooks/queries/useFetchSpeciesQuery";
-import { Grid, GridItem, Spinner } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import styles from "./main-container.module.scss";
 
 export const MainContainer = () => {
@@ -32,21 +31,8 @@ export const MainContainer = () => {
 
   return (
     <section className={styles.main_container}>
-      <Grid
-        width="100%"
-        templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-        gap={8}
-      >
-        <ListItems
-          items={data}
-          render={(item) => (
-            <GridItem key={item.name}>
-              <SpecieItem item={item} />
-            </GridItem>
-          )}
-        />
-      </Grid>
-      <Pagination />
+      <SpeciesFilter />
+      <FilterableSpecies data={data} />
     </section>
   );
 };
