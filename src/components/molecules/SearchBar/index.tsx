@@ -28,7 +28,6 @@ export const SearchBar = () => {
 
     return () => {
       newSearchParams.delete("name");
-      router.replace(`?${newSearchParams.toString()}`);
     };
   }, [debouncedValue, router]);
 
