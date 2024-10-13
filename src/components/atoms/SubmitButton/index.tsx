@@ -1,5 +1,7 @@
 import { Button, Spinner } from "@chakra-ui/react";
 import { ReactNode } from "react";
+import styles from "./submit-button.module.scss";
+import { LoaderCircle } from "lucide-react";
 
 interface SubmitButtonProps {
   isPending: boolean;
@@ -13,13 +15,13 @@ export const SubmitButton = ({
   isError,
 }: SubmitButtonProps) => {
   return (
-    <Button
+    <button
+      className={`${styles.button} ${isError ? styles.error : ""}`}
       type="submit"
-      colorScheme={isError ? "red" : "teal"}
       disabled={isPending}
-      gap={2}
     >
-      {children} {isPending && <Spinner size="sm" />}
-    </Button>
+      {children}{" "}
+      {isPending && <LoaderCircle size={16} className={styles.loading} />}
+    </button>
   );
 };
