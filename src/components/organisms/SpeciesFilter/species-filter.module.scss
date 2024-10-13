@@ -1,0 +1,30 @@
+.search_and_selects {
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+
+  .selects_and_button {
+    flex-direction: column;
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+    }
+
+    .selects {
+      flex-direction: column;
+
+      @media (min-width: 460px) {
+        flex-direction: row;
+      }
+    }
+
+    button {
+      @media (max-width: 640px) {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -30,7 +30,7 @@ export const FilterSelect = ({
   };
 
   return (
-    <Select onChange={onChange} value={skinColor}>
+    <Select onChange={onChange} value={skinColor} focusBorderColor="#009c96">
       <option value={placeholder} disabled>
         {placeholder}
       </option>

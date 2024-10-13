@@ -11,7 +11,7 @@ interface FetchRelatedSpeciesQueryProps {
 export const useFetchRelatedSpeciesQuery = ({
   classification,
   currentPersonName,
-  limit,
+  limit = 5,
 }: FetchRelatedSpeciesQueryProps) => {
   return useQuery({
     queryKey: ["species"],
@@ -34,7 +34,7 @@ export const useFetchRelatedSpeciesQuery = ({
             image: name, // Add the image to the species data
           };
         })
-        .slice(0, limit || 5);
+        .slice(0, limit);
 
       return combinedData;
     },

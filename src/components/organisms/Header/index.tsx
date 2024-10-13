@@ -1,11 +1,10 @@
+import logo from "@/assets/logo.png";
+import { ActiveLink } from "@/components/atoms/ActiveLink";
+import { HEADER_LINKS } from "@/constants/header-links";
+import Image from "next/image";
 import Link from "next/link";
 import { ListItems } from "../ListItems";
-import { HEADER_LINKS } from "@/constants/header-links";
 import styles from "./header.module.scss";
-import { Button } from "@chakra-ui/react";
-import { ActiveLink } from "@/components/atoms/ActiveLink";
-import logo from "@/assets/logo.png";
-import Image from "next/image";
 
 export const Header = () => {
   return (
@@ -25,14 +24,6 @@ export const Header = () => {
               )}
             />
           </ul>
-          <div className={styles.buttons}>
-            <Button size="sm" color="ButtonText">
-              Sign In
-            </Button>
-            <Button size="sm" colorScheme="teal">
-              Sign Up
-            </Button>
-          </div>
         </div>
       </nav>
     </header>

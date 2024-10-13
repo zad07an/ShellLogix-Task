@@ -22,15 +22,15 @@ export const RelatedSpecies = ({
   currentPersonName,
   classification,
 }: RelatedSpeciesProps) => {
-  const { data, isSuccess, isError, isPending } = useFetchRelatedSpeciesQuery({
+  const { data, status } = useFetchRelatedSpeciesQuery({
     classification,
     currentPersonName,
     limit: 5,
   });
 
-  if (isPending) return <Spinner />;
+  if (status === "pending") return <Spinner />;
 
-  if (isError) {
+  if (status === "error") {
     return (
       <Text fontSize={24} fontWeight="bold" colorScheme="red">
         Failed to fetch related species.
@@ -38,7 +38,7 @@ export const RelatedSpecies = ({
     );
   }
 
-  if ((isSuccess && !data?.length) || !data?.length) {
+  if ((status === "success" && !data) || !data) {
     return (
       <Text fontSize={24} fontWeight="bold">
         No related species.
@@ -52,7 +52,7 @@ export const RelatedSpecies = ({
         <Heading fontSize={24} fontWeight="bold">
           Related Species
         </Heading>
-        <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={8}>
+        <Grid templateColumns="repeat(auto-fill, minmax(320px, 1fr))" gap={8}>
           <ListItems
             items={data}
             render={(item) => (

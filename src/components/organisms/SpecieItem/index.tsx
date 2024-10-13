@@ -1,3 +1,5 @@
+"use client";
+
 import { useImage } from "@/hooks/useImage";
 import { convertNameToSlug } from "@/lib/utils";
 import { SpecieDataProps } from "@/types/definitions";
@@ -18,7 +20,17 @@ export const SpecieItem = ({ item }: SpecieItemProps) => {
 
   return (
     <Link href={slug} className={styles.starship_card}>
-      {!!image && <Image src={image} alt="image" width={256} height={256} />}
+      {!!image ? (
+        <Image
+          src={image.src}
+          alt="image"
+          width={256}
+          height={256}
+          blurDataURL={image.blurDataURL}
+        />
+      ) : (
+        <div style={{ width: 256, minWidth: 256, height: 256 }}></div>
+      )}
       <Stack direction="column" spacing={2}>
         <Text fontSize={24} fontWeight="bold">
           {item.name}

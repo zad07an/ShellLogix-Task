@@ -3,7 +3,7 @@
 import { FilterableSpecies } from "@/components/organisms/FilterableSpecies";
 import { SpeciesFilter } from "@/components/organisms/SpeciesFilter";
 import { useFetchSpeciesQuery } from "@/hooks/queries/useFetchSpeciesQuery";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Text } from "@chakra-ui/react";
 import styles from "./main-container.module.scss";
 
 export const MainContainer = () => {
@@ -18,15 +18,15 @@ export const MainContainer = () => {
   }
   if (isError)
     return (
-      <div className={styles.main_container}>
-        <p className={styles.error}>Failed to fetch data</p>
-      </div>
+      <Text fontSize={24} colorScheme="red" fontWeight="bold">
+        Failed to fetch data
+      </Text>
     );
   if ((isSuccess && !data) || !data)
     return (
-      <div className={styles.main_container}>
-        <p className={styles.no_data_found}>No data found</p>
-      </div>
+      <Text fontSize={24} fontWeight="bold">
+        No data found
+      </Text>
     );
 
   return (

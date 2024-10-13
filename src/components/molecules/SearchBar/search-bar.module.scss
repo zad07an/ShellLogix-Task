@@ -1,0 +1,13 @@
+.search_bar {
+  width: 100%;
+  position: relative;
+  border: none;
+
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 300px;
+  }
+}
