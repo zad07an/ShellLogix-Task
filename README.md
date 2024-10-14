@@ -30,7 +30,7 @@ Welcome to the **Star Wars Species Explorer**! This project allows users to expl
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-repo/starwars-species-explorer.git
+   git clone https://github.com/zad07an/ShellLogix-Task.git
    ```
 
 2. Install dependencies:
