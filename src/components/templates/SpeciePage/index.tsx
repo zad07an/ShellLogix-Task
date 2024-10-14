@@ -7,7 +7,6 @@ import {
 } from "@/components/organisms/SpecieCard";
 import { useFetchSingleSpecieQuery } from "@/hooks/queries/useFetchSingleSpecieQuery";
 import { Spinner, Text } from "@chakra-ui/react";
-import { notFound } from "next/navigation";
 import { RelatedSpecies } from "../RelatedSpecies";
 import styles from "./specie-page.module.scss";
 
@@ -36,7 +35,15 @@ export const SingleSpeciePage = ({ id }: SingleSpeciePageProps) => {
     );
   }
 
-  if (!specie) notFound();
+  if (!specie || (status === "success" && !specie)) {
+    return (
+      <div className="full-height centered">
+        <Text fontSize={18} color="red" fontWeight="bold">
+          Specie not found
+        </Text>
+      </div>
+    );
+  }
 
   return (
     <section className={styles.specie_container}>

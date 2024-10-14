@@ -1,18 +1,7 @@
 "use client";
 
-import { Button } from "@chakra-ui/react";
+import { ErrorTryAgain } from "@/components/organisms/ErrorTryAgain";
 
-interface ErrorProps {
-  reset: () => void;
-}
-
-export default function error({ reset }: ErrorProps) {
-  return (
-    <section className="full-height centered">
-      <p>Unexpexted error occured</p>
-      <Button onClick={reset} colorScheme="teal" width={200}>
-        Try again
-      </Button>
-    </section>
-  );
+export default function error() {
+  return <ErrorTryAgain />;
 }
